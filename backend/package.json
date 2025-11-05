@@ -1,0 +1,37 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend oof task manager app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.ts",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Debaraj-stha/task-manager.git"
+  },
+  "keywords": [
+    "task-manager",
+    "taskManager",
+    "realTimeApp"
+  ],
+  "author": "Deveraj Shrestha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Debaraj-stha/task-manager/issues"
+  },
+  "homepage": "https://github.com/Debaraj-stha/task-manager#readme",
+  "dependencies": {
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "firebase-admin": "^13.5.0",
+    "pg": "^8.16.3",
+    "prisma": "^6.18.0",
+    "socket.io": "^4.8.1"
+  }
+}
