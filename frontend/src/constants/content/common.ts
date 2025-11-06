@@ -1,4 +1,4 @@
-export const APP_NAME="Task Manager"
+export const APP_NAME = "Task Manager"
 
 export const FEATURES = [
   {
@@ -49,7 +49,22 @@ export const FEATURES = [
       "Dynamic theme support for better user experience and accessibility across devices and preferences.",
     icon: "🌙",
   },
-  
- 
-  
+
+
+
+];
+
+export const NAV_LINKS = [
+  { label: "Home", routeKey: "HOME" },
+  { label: "Features", routeKey: "FEATURES" },
+  { label: "About", routeKey: "ABOUT" },
+  { label: "Contact", routeKey: "CONTACT" },
+];
+
+export const QUICK_LINKS = [
+  ...NAV_LINKS,
+  { label: "Login", routeKey: "LOGIN" },
+  { label: "Terms", routeKey: "TERMS" },
+  { label: "Settings", routeKey: "SETTINGS" },
+  { label: "Privacy", routeKey: "PRIVACY" },
 ];

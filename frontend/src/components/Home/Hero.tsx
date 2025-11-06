@@ -113,7 +113,7 @@ const Hero = () => {
             ref={buttonRef}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className="border-transparent-button "
+            className="border-transparent-button px-8 py-3 md:py-4 "
           >
             Get Started
           </button>

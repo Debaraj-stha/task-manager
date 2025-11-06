@@ -3,6 +3,7 @@ import { FEATURES } from "../../constants/content/common";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import SectionTitle from "./SectionTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +33,7 @@ const Features = () => {
 
     return (
         <div className="container mx-auto py-20 space-y-10">
-            <h2 className="text-4xl font-bold text-center mb-12">Features</h2>
+            <SectionTitle title="Features"/>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" ref={featureRefs}>
                 {FEATURES.map((feature, i) => (
                     <div

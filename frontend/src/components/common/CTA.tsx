@@ -88,7 +88,7 @@ const CTA = () => {
         <div className="flex flex-col md:flex-row justify-center gap-4">
           <Link
             to={`${ROUTES.LOGIN}`}
-            className="button button-white"
+            className="button button-white px-8 py-3 md:py-4"
             style={{ opacity: 0 }}
           >
             Get Started
@@ -96,7 +96,7 @@ const CTA = () => {
           <Link
             to={`${ROUTES.LEARN_MORE}`}
             style={{ opacity: 0 }}
-            className="button border-transparent-button"
+            className="button border-transparent-button px-8 py-3 md:py-4"
           >
             Learn More
           </Link>

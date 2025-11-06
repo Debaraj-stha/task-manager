@@ -3,6 +3,7 @@ import { TESTIMONIALS } from "../../constants/content/home";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import SectionTitle from "../common/SectionTitle";
 
 
 
@@ -33,10 +34,8 @@ const Testimonials = () => {
   }, { scope: ref });
   return (
     <section className="container mx-auto bg-gradient-to-r from-blue-50 to-gray-100 py-20">
-      <div className=" mx-auto px-6 text-center">
-        <h2 className="heading-2 title-color">
-          What Our Users Say
-        </h2>
+      <div className=" mx-auto  text-center">
+      <SectionTitle title="What people says"/>
 
         <div className="grid gap-4 md:grid-cols-3" ref={ref}>
           {TESTIMONIALS.map((t, i) => (

@@ -1,25 +1,46 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .button-white {
+    @apply bg-white text-blue-600 text-sm md:text-lg md:font-semibold rounded-full shadow-lg hover:bg-gray-100 transition cursor-pointer;
+  }
 
+  .border-transparent-button {
+    @apply border-2 border-white text-sm md:text-lg text-white md:font-semibold rounded-full hover:bg-white hover:text-blue-600 transition cursor-pointer;
+  }
 
+  .heading-2 {
+    @apply text-4xl font-bold mb-10 md:text-5xl;
+  }
 
-@layer components{
-    .button-white{
-        @apply bg-white text-blue-600 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition cursor-pointer px-8 py-3 md:py-4 ;
-    }
-    .border-transparent-button{
-        @apply border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-blue-600 transition cursor-pointer px-8 py-3 md:py-4 ;
-    }
-    .heading-2{
-        @apply text-4xl font-bold mb-10 md:text-5xl;
-    }
-    .title-color{
-        @apply text-gray-800;
-    }
-    .heading-1{
-        @apply  text-5xl md:text-6xl font-extrabold;
-    }
+  .title-color {
+    @apply text-gray-800;
+  }
+
+  .heading-1 {
+    @apply text-5xl md:text-6xl font-extrabold;
+  }
 }
+@layer utilities {
+  .animation-bounce-smooth {
+    animation: bounceSmooth 2.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse;
+  }
+
+  @keyframes bounceSmooth {
+    0%, 100% {
+      transform: translateY(0) scale(0.8);
+    
+    }
+    30% {
+      transform: translateY(-25px) scale((1));
+    }
+    50% {
+      transform: translateY(10px) scale(1.1);
+    }
+    70% {
+      transform: translateY(-10px) scale(0.9);
+    }
+  }
+}
+
