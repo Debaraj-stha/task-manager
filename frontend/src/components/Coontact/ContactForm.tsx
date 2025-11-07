@@ -1,10 +1,11 @@
 
+import { CONTACT_TEXT_COLOR } from '../../constants/colors'
 import Input from '../ui/Input'
 
 const ContactForm = () => {
     return (
         <div className="flex-1 space-y-8">
-            <form className="space-y-5 max-w-md text-gray-800">
+            <form className={`space-y-5 max-w-md ${CONTACT_TEXT_COLOR.primary} `}>
                 <Input
                     name="name"
                     label="Name"

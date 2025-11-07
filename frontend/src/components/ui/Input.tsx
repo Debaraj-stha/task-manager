@@ -22,9 +22,9 @@ const Input: React.FC<InputProps> = ({
   onChange,
 }) => {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 input-card">
       {label && (
-        <label htmlFor={name} className="font-medium text-sm text-gray-700">
+        <label htmlFor={name} className="font-medium text-sm">
           {label} {isRequired && <span className="text-red-500">*</span>}
         </label>
       )}
