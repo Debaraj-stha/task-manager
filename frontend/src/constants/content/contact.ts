@@ -6,3 +6,7 @@ export const SOCIAL_LINKS = {
   github: "https://github.com/yourusername",
   youtube: "https://youtube.com/@yourchannel",
 };
+
+export const PHONE="+977980000000"
+export const EMAIL="info@gmail.com"
+export const ADDRESS="Dharan,Nepal"

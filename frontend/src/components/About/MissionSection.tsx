@@ -40,11 +40,13 @@ const MissionSection = () => {
             y: 40,
 
         })
-        t.from(current.querySelectorAll(".card"), {
+        gsap.fromTo(current.querySelectorAll(".card"), {
             opacity: 0,
             y: 40,
-            stagger:0.2,
-
+        }, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.2,
         })
 
     }, { scope: ref })

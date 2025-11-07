@@ -1,5 +1,3 @@
-import React from 'react'
-import { APP_NAME } from '../constants/content'
 import Hero from '../components/Home/Hero'
 import Features from '../components/common/Features'
 import Testimonials from '../components/Home/Testimonials'

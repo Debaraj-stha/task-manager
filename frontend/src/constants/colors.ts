@@ -7,3 +7,8 @@ export const ABOUT_TEXT_COLOR = {
 
 }
 
+export const CONTACT_TEXT_COLOR = {
+ ...ABOUT_TEXT_COLOR,
+ secondary:"text-gray-900"
+
+}

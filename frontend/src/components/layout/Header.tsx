@@ -34,7 +34,7 @@ const Header = () => {
       style={{ backgroundColor: HEADERBG }}
     >
       {/* header */}
-      <div className="flex justify-between">
+      <div className="flex justify-between z-50">
         <Brand />
         {toggleMenu()}
       </div>
@@ -44,13 +44,23 @@ const Header = () => {
         </nav>
         <ThemeToggler />
       </div>
+      <div>
 
+      </div>
+      {/* Mobile Overlay */}
+      {isOpened && (
+        <div
+          className="fixed inset-0 bg-gray-900/80 h-screen backdrop-blur-sm z-30 transition-opacity duration-300 "
+          onClick={() => setOpened(false)}
+        ></div>
+      )}
       {/* sidebar for Mobile */}
-      <div className={`${isOpened ? "block" : "hidden"} md:hidden min-h-screen py-2 w-full space-y-6`} style={{ backgroundColor: HEADERBG }}>
+      <div className={`${isOpened ? "block" : "hidden"} md:hidden min-h-screen   space-y-6 absolute px-6 py-16 inset-0 w-1/2 z-40`} style={{ backgroundColor: HEADERBG }}>
+
         <nav className="flex flex-col gap-5 items-start">
           {renderLinks()}
         </nav>
-        <ThemeToggler isMobile={true}/>
+        <ThemeToggler isMobile={true} />
       </div>
     </header>
   );

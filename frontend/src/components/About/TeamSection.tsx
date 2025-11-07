@@ -30,12 +30,15 @@ const TeamSection = () => {
       y: 40,
 
     })
-    t.from(current.querySelectorAll(".grid-card"), {
+    t.fromTo(current.querySelectorAll(".grid-card"), {
       opacity: 0,
-      y: 40,
       stagger: 0.2,
 
-    })
+    },
+  {
+    opacity:1,
+    stagger:0.1
+  },"-=0.2")
 
   }, { scope: ref })
 
@@ -47,7 +50,8 @@ const TeamSection = () => {
         {TEAMS.map((member, i) => (
           <div
             key={i}
-            className="bg-white/5 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-lg transition hover:scale-105 border border-white/10 grid-card"
+            className="bg-white/5 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-lg transition hover:scale-105 border
+             border-white/10 grid-card hover:bg-white/10 "
           >
             <img
               src={member.image}
