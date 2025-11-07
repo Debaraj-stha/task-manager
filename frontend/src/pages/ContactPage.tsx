@@ -18,6 +18,7 @@ const ContactPage = () => {
         const t = gsap.timeline({
         }
         )
+ 
         t.from(ref.current.querySelector("h2"), {
             opacity: 0,
             y: 30,

@@ -8,7 +8,14 @@ export const ABOUT_TEXT_COLOR = {
 }
 
 export const CONTACT_TEXT_COLOR = {
- ...ABOUT_TEXT_COLOR,
- secondary:"text-gray-900"
+    ...ABOUT_TEXT_COLOR,
+    third: " text-blue-200",
+    secondary: "text-gray-900"
+
+}
+export const HOME_TEXT_COLOR = {
+    primary: "text-gray-100",
+    third: " text-blue-200",
+    secondary: "text-white"
 
 }

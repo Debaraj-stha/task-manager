@@ -4,4 +4,17 @@ import ABOUTIMAGE from "../assets/images/group-business-people-man-woman-black-s
 import BLOB from "../assets/svg/blob2.svg"
 import CONTACTSVGIMAGE from "../assets/images/customer-support-flat-design-illustration.png"
 import CONTACTUSBG from "../assets/svg/blob-scene-haikei.svg"
-export { abstract, ABOUTIMAGE, ABOUTSVG, BLOB, CONTACTSVGIMAGE,CONTACTUSBG }
+import LOGINBLOB from "../assets/svg/login-blob.svg"
+import LOGINFORMSVG from "../assets/svg/login_form.svg"
+import GOOGLEICON from "../assets/svg/google_logo.svg"
+import FACEBOOKICON from "../assets/svg/facebook.svg"
+export { abstract,
+     ABOUTIMAGE, 
+    ABOUTSVG,
+     BLOB, 
+    CONTACTSVGIMAGE,
+    CONTACTUSBG,
+    LOGINBLOB,
+    LOGINFORMSVG,
+    GOOGLEICON,
+    FACEBOOKICON }

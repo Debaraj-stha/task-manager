@@ -8,7 +8,10 @@ interface InputProps {
   isTextArea?: boolean;
   isRequired?: boolean;
   placeholder?: string;
+  bgClass?: string,
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  textClass?:string
+  placeholderClass?:string
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +23,9 @@ const Input: React.FC<InputProps> = ({
   isRequired = false,
   placeholder,
   onChange,
+  bgClass,
+  textClass="text-white",
+  placeholderClass="placeholder-gray-300"
 }) => {
   return (
     <div className="flex flex-col gap-1 input-card">
@@ -37,8 +43,7 @@ const Input: React.FC<InputProps> = ({
           onChange={onChange}
           placeholder={placeholder}
           required={isRequired}
-          className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none 
-                     focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className={`w-full px-4 py-3 rounded-lg ${textClass} ${placeholderClass} focus:outline-none focus:ring-2 focus:ring-blue-400 ${bgClass ? bgClass : ""}`}
           rows={4}
         />
       ) : (
@@ -50,8 +55,7 @@ const Input: React.FC<InputProps> = ({
           onChange={onChange}
           placeholder={placeholder}
           required={isRequired}
-          className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none 
-                     focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className={`w-full px-4 py-3 rounded-lg ${textClass} ${placeholderClass} focus:outline-none focus:ring-2 focus:ring-blue-400 ${bgClass ? bgClass : ""}`}
         />
       )}
     </div>

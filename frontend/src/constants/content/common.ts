@@ -55,10 +55,10 @@ export const FEATURES = [
 ];
 
 export const NAV_LINKS = [
-  { label: "Home", routeKey: "HOME" },
-  { label: "Features", routeKey: "FEATURES" },
-  { label: "About", routeKey: "ABOUT" },
-  { label: "Contact", routeKey: "CONTACT" },
+  { label: "Home", routeKey: "HOME", role: ["guest"] },
+  { label: "About", routeKey: "ABOUT", role: ["guest"] },
+  { label: "Contact", routeKey: "CONTACT", role: ["guest"] },
+  { label: "Login", routeKey: "LOGIN", role: ["guest"] },
 ];
 
 export const QUICK_LINKS = [

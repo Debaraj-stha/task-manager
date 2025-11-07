@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import SectionTitle from "../common/SectionTitle";
+import { HOME_TEXT_COLOR } from "../../constants/colors";
 
 
 
@@ -16,9 +17,10 @@ const Testimonials = () => {
     if (!ref.current) return
     gsap.fromTo(
       ref.current.querySelectorAll(".card"),
-      { y: 50, opacity: 0 },
+      { 
+         opacity: 0 },
       {
-        y: 0,
+        
         stagger: 0.1,
         opacity: 1,
         duration: 1,
@@ -33,24 +35,26 @@ const Testimonials = () => {
 
   }, { scope: ref });
   return (
-    <section className="container mx-auto bg-gradient-to-r from-blue-50 to-gray-100 py-20">
+    <section className="container mx-auto py-20">
       <div className=" mx-auto  text-center">
-      <SectionTitle title="What people says"/>
+      <SectionTitle title="What people says" textColor={`${HOME_TEXT_COLOR.primary}`}/>
 
-        <div className="grid gap-4 md:grid-cols-3" ref={ref}>
+        <div className="grid gap-4 md:gap-8 md:grid-cols-3 mt-6" ref={ref}>
           {TESTIMONIALS.map((t, i) => (
             <div
               key={i}
-              className="card bg-white rounded-xl opacity-95 hover:opacity-100 shadow-md p-6 flex flex-col items-center text-center hover:shadow-xl transition-shadow"
+              className="border border-white/10 card bg-gray-900 rounded-xl opacity-95 hover:opacity-100 shadow-md p-6 flex flex-col items-center text-center hover:shadow-xl transition-all
+              hover:scale-105
+              "
             >
               <img
                 src={t.avatar}
                 alt={t.name}
                 className="w-20 h-20 rounded-full mb-4"
               />
-              <p className="text-gray-600 mb-4">"{t.feedback}"</p>
-              <h3 className="font-semibold text-gray-800">{t.name}</h3>
-              <p className="text-sm text-gray-500">{t.role}</p>
+              <p className={`${HOME_TEXT_COLOR.secondary} mb-4`}>"{t.feedback}"</p>
+              <h3 className={`font-semibold ${HOME_TEXT_COLOR.primary}`}>{t.name}</h3>
+              <p className={`text-sm ${HOME_TEXT_COLOR.secondary}`}>{t.role}</p>
             </div>
           ))}
         </div>
