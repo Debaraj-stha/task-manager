@@ -12,12 +12,14 @@ const ContactForm = () => {
                     type="text"
                     placeholder="Jhon Doe"
                     isRequired
+                    bgClass='bg-blue-900'
                     onChange={(e) => console.log(e.target.value)}
                 />
                 <Input
                     name="email"
                     label="Email Address"
                     type="email"
+                    bgClass='bg-blue-900'
                     placeholder="you@example.com"
                     isRequired
                     onChange={(e) => console.log(e.target.value)}
@@ -27,6 +29,7 @@ const ContactForm = () => {
                     name="message"
                     label="Message"
                     isTextArea
+                    bgClass='bg-blue-900'
                     placeholder="Write your message..."
                 />
 
