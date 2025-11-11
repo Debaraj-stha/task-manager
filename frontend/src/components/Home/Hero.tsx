@@ -1,14 +1,17 @@
-import  { useRef } from "react";
+import { useRef, useState } from "react";
 import { APP_NAME } from "../../constants/content";
 import { abstract } from "../../constants/images";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import Modal from "../ui/Modal";
+import CreateWorkspace from "./CreateWorkspace";
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const bubbleContainerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const intervalRef = useRef<number | null>(null);
+  const [modalOpen, setOpen] = useState(false)
 
   // Bubble creation function
   const createBubbles = () => {
@@ -88,6 +91,15 @@ const Hero = () => {
     );
   }, { scope: containerRef });
 
+  const handleButtonClick = () => {
+    setOpen(true)
+
+  }
+
+  if (modalOpen) {
+    return <CreateWorkspace/>
+  }
+
   return (
     <section
       className="relative text-gray-800 min-h-screen flex items-center justify-center px-6 bg-fixed bg-cover bg-center"
@@ -110,6 +122,7 @@ const Hero = () => {
         <div className="mt-8 relative inline-block">
           <div ref={bubbleContainerRef} className="absolute inset-0 pointer-events-none" />
           <button
+            onClick={handleButtonClick}
             ref={buttonRef}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -119,6 +132,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
+
     </section>
   );
 };
