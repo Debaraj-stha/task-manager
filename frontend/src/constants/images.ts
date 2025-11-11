@@ -8,6 +8,7 @@ import LOGINBLOB from "../assets/svg/login-blob.svg"
 import LOGINFORMSVG from "../assets/svg/login_form.svg"
 import GOOGLEICON from "../assets/svg/google_logo.svg"
 import FACEBOOKICON from "../assets/svg/facebook.svg"
+import SIGNUPBLOB from "../assets/svg/signup-blob.svg"
 export { abstract,
      ABOUTIMAGE, 
     ABOUTSVG,
@@ -17,4 +18,6 @@ export { abstract,
     LOGINBLOB,
     LOGINFORMSVG,
     GOOGLEICON,
-    FACEBOOKICON }
+    SIGNUPBLOB,
+    FACEBOOKICON ,
+}

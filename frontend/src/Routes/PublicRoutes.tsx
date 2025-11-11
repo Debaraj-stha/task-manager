@@ -7,6 +7,7 @@ import ContactPage from '../pages/ContactPage'
 
 import LoginPage from '../features/auth/pages/LoginPage'
 import AuthWrapper from '../features/auth/components/AuthWrapper'
+import Signup from '../features/auth/pages/Signup'
 
 const PublicRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const PublicRoutes = () => {
 
             <Route path='/auth' element={<AuthWrapper />}>
                 <Route index path={ROUTES.LOGIN} element={<LoginPage />} />
+                <Route index path={ROUTES.SIGNUP} element={<Signup />} />
             </Route>
         </Routes>
     )

@@ -22,25 +22,45 @@
     @apply text-5xl md:text-6xl font-extrabold;
   }
 }
+
 @layer utilities {
   .animation-bounce-smooth {
     animation: bounceSmooth 2.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite alternate-reverse;
   }
 
+
+  .scale-up-image{
+    animation: scale-up-image 5s ease infinite alternate-reverse;
+  }
+
   @keyframes bounceSmooth {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0) scale(0.8);
-    
+
     }
+
     30% {
       transform: translateY(-25px) scale((1));
     }
+
     50% {
       transform: translateY(10px) scale(1.1);
     }
+
     70% {
       transform: translateY(-10px) scale(0.9);
     }
   }
-}
 
+  @keyframes  scale-up-image {
+    from{
+      transform: scale(0.8);
+    }
+    to{
+      transform: scale(1.1);
+    }
+  }
+
+}
