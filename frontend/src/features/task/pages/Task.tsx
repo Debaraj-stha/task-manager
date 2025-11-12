@@ -2,9 +2,10 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 
 const Task = () => {
-  const{workspace}=useParams()
+    const {task_id,workspace}=useParams<{task_id?:string,workspace?:string}>()
+    console.log(task_id,workspace)
   return (
-    <div>Task:{workspace}</div>
+    <div className='text-red-600'>Task id :{task_id} {workspace}</div>
   )
 }
 

@@ -8,6 +8,9 @@ import ContactPage from '../pages/ContactPage'
 import LoginPage from '../features/auth/pages/LoginPage'
 import AuthWrapper from '../features/auth/components/AuthWrapper'
 import Signup from '../features/auth/pages/Signup'
+
+
+import TasksPage from '../features/task/pages/TasksPage'
 import Tasks from '../features/task/pages/Tasks'
 import Task from '../features/task/pages/Task'
 
@@ -22,7 +25,8 @@ const AppRoutes = () => {
         <Route index path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route index path={ROUTES.SIGNUP} element={<Signup />} />
       </Route>
-      <Route path={ROUTES.TASKS} element={<Tasks />}>
+      <Route path={ROUTES.TASKS} element={<TasksPage />}>
+        <Route path={ROUTES.WORKSPACE_TASK} element={<Tasks />} />
         <Route path={ROUTES.TASK} element={<Task />} />
       </Route>
 

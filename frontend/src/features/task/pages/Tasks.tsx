@@ -1,46 +1,40 @@
+import React from "react";
+import { Outlet, useParams } from "react-router-dom";
+import { tasks } from "../../../constants/content/tasks/tasks";
 
-import WrapperContainer from '../../../components/ui/WrapperContainer'
-import { Link, Outlet, useLocation } from 'react-router-dom'
-import { capitalize } from '../../../utils/utils'
+import TaskItem from "../components/TaskItem";
+import { capitalize } from "../../../utils/utils";
 
-const workspaces = [
-  "office",
-  "design",
-  "production"
-]
 
-const Tasks = () => {
-  const location = useLocation()
-  const pathname = location.pathname
+const Tasks: React.FC = () => {
+  const { workspace } = useParams<{ workspace?: string }>();
+
+  const workspaceTasks = workspace
+    ? tasks.filter(
+        (t) => t.workspace?.toLowerCase() === workspace.toLowerCase()
+      )
+    : tasks;
+
   return (
-    <WrapperContainer>
-      <div className="text-white flex flex-col md:flex-row gap-6 min-h-screen md:gap-14">
-        <div className="space-y-3 bg-linear-to-r from-blue-600 to-blue-400 rounded p-4 md:p-8 md:min-w-md">
-          <h2 className="text-2xl font-bold">Workspace</h2>
-          <div className="flex flex-col gap-2 text-left">
-            {
-              workspaces.map((workspace) => (
-                <Link
-                  to={workspace}
-                  className={`
-              transition-all hover:-translate-x-2 duration-150 
-              ${pathname.includes(workspace)
-                      ? "text-gray-100 font-bold"   // Active link styles
-                      : "hover:text-yellow-400"
-                    } `}
-                >
-                  {capitalize(workspace)}
-                </Link>
-              ))
-            }
-          </div>
+    <div className="flex-1 p-6 space-y-4">
+      <h2 className="border-b pb-2 font-semibold text-3xl text-blue-600 border-white/30">
+        {workspace ? `${capitalize(workspace)} Tasks` : "All Tasks"}
+      </h2>
+
+      {workspaceTasks.length > 0 ? (
+        <div className="space-y-3">
+          {workspaceTasks.map((t) => (
+            <TaskItem key={t.id} task={t} />
+          ))}
         </div>
-        <Outlet />
-      </div>
+      ) : (
+        <p className="text-gray-400 italic">
+          No tasks found for this workspace.
+        </p>
+      )}
+  
+    </div>
+  );
+};
 
-
-    </WrapperContainer>
-  )
-}
-
-export default Tasks
+export default Tasks;

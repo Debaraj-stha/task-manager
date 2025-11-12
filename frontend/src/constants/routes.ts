@@ -9,6 +9,7 @@ export const ROUTES: Record<string, string> = {
     SETTINGS: "/settings",
     PRIVACY: "/privacy",
     TASKS:"/tasks",
-    TASK:":workspace"
+    WORKSPACE_TASK:":workspace",
+    TASK:":workspace/:task_id"
 
 };
