@@ -8,5 +8,7 @@ export const ROUTES: Record<string, string> = {
     TERMS: "/terms",
     SETTINGS: "/settings",
     PRIVACY: "/privacy",
+    TASKS:"/tasks",
+    TASK:":workspace"
 
 };

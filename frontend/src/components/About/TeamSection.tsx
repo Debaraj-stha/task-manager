@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import Container from "../ui/Container";
 gsap.registerPlugin(ScrollTrigger)
 const TeamSection = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -18,9 +19,8 @@ const TeamSection = () => {
       scrollTrigger: {
         trigger: ref.current,
         start: "top 90%",
-        end: "top 60%",
         toggleActions: "play none none reverse",
-        scrub: true,
+
 
       }
     }
@@ -33,18 +33,20 @@ const TeamSection = () => {
     t.fromTo(current.querySelectorAll(".grid-card"), {
       opacity: 0,
       stagger: 0.2,
+      y:40
 
     },
   {
     opacity:1,
-    stagger:0.1
+    stagger:0.1,
+    y:0
   },"-=0.2")
 
   }, { scope: ref })
 
   return (
-    <section className="container mx-auto py-16 text-center" ref={ref}>
-      <SectionTitle title="Meet Our Team" textColor={ABOUT_TEXT_COLOR.primary} />
+    <Container ref={ref}>
+       <SectionTitle title="Meet Our Team" textColor={ABOUT_TEXT_COLOR.primary} />
 
       <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 ${ABOUT_TEXT_COLOR.secondary} `}>
         {TEAMS.map((member, i) => (
@@ -76,7 +78,7 @@ const TeamSection = () => {
           </div>
         ))}
       </div>
-    </section>
+    </Container>
   );
 }
 

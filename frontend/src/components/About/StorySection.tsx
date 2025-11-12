@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import  { useRef } from "react";
 import SectionTitle from "../common/SectionTitle";
 import { STORY_PARA1, STORY_PARA2 } from "../../constants/content/about";
 import { ABOUT_TEXT_COLOR } from "../../constants/colors";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import Container from "../ui/Container";
 
 gsap.registerPlugin(ScrollTrigger)
 const StorySection = () => {
@@ -17,9 +18,7 @@ const StorySection = () => {
       scrollTrigger: {
         trigger: ref.current,
         start: "top 90%",
-        end: "top 60%",
         toggleActions: "play none none reverse",
-        scrub: true,
 
       }
     }
@@ -39,7 +38,7 @@ const StorySection = () => {
   }, { scope: ref })
   
   return (
-    <section className="container mx-auto px-6 py-16 text-center" ref={ref}>
+    <Container ref={ref}>
       {/* Heading */}
       <SectionTitle title="Our Story" textColor={ABOUT_TEXT_COLOR.primary} />
 
@@ -56,7 +55,7 @@ const StorySection = () => {
           {STORY_PARA2}
         </p>
       </div>
-    </section>
+    </Container>
   );
 };
 

@@ -10,7 +10,7 @@ import { ROUTES } from "../../constants/routes";
 
 const Header = () => {
   const [isOpened, setOpened] = useState(false)
-  const role = "guest"
+  const role = "user"
 
   const toggleMenu = () => {
     return <button onClick={() => setOpened((prev) => !prev)} className="md:hidden text-white focus:outline-none z-50">

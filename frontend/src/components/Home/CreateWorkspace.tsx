@@ -47,11 +47,10 @@ const CreateWorkspace = ({ onClose, onCreate }: Props) => {
         <Input
           name="workspaceName"
           label="Workspace Name"
-          placeholder="e.g. Marketing, Design, Product"
+          placeholder="e.g. Marketing, Design, Product,Managing"
           bgClass="bg-gray-100"
           value={workspaceName}
           onChange={(e) => setWorkspaceName(e.target.value)}
-          type="text"
         />
 
         {error && <p className="text-red-500 text-sm">{error}</p>}

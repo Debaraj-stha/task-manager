@@ -59,6 +59,7 @@ export const NAV_LINKS = [
   { label: "About", routeKey: "ABOUT", role: ["guest"] },
   { label: "Contact", routeKey: "CONTACT", role: ["guest"] },
   { label: "Login", routeKey: "LOGIN", role: ["guest"] },
+    { label: "Task", routeKey: "TASKS", role: ["user"] },
 ];
 
 export const QUICK_LINKS = [

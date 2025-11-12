@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import  { useRef } from "react";
 import SectionTitle from "../common/SectionTitle";
 import { MISSION, VISION } from "../../constants/content/about";
 import { ABOUT_TEXT_COLOR } from "../../constants/colors";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import Container from "../ui/Container";
 gsap.registerPlugin(ScrollTrigger)
 const MissionSection = () => {
     const renderSection = (title: string, content: string) => {
@@ -27,11 +28,8 @@ const MissionSection = () => {
         const t = gsap.timeline({
             scrollTrigger: {
                 trigger: ref.current,
-                start: "top 90%",
-                end: "top 60%",
+                start: "top 80%",
                 toggleActions: "play none none reverse",
-                scrub: true,
-
             }
         }
         )
@@ -43,16 +41,16 @@ const MissionSection = () => {
         gsap.fromTo(current.querySelectorAll(".card"), {
             opacity: 0,
             y: 40,
+            stagger:0.2,
         }, {
             opacity: 1,
             y: 0,
-            stagger: 0.2,
         })
 
     }, { scope: ref })
 
     return (
-        <section className="container mx-auto px-6 py-16 text-center text-gray-900" ref={ref}>
+        <Container ref={ref}>
             <SectionTitle title="Our Mission & Vision" textColor={`${ABOUT_TEXT_COLOR.primary}`} />
 
             <div className={`flex flex-col md:flex-row gap-10 mt-8 items-start md:items-stretch ${ABOUT_TEXT_COLOR.secondary}`}>
@@ -70,7 +68,7 @@ const MissionSection = () => {
 
                 )}
             </div>
-        </section>
+        </Container>
     );
 };
 
