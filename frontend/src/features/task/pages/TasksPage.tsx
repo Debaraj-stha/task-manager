@@ -1,45 +1,23 @@
 
-import WrapperContainer from '../../../components/ui/WrapperContainer'
-import { Link, Outlet, useLocation } from 'react-router-dom'
-import { capitalize } from '../../../utils/utils'
+import {  Outlet  } from 'react-router-dom'
 
-const workspaces = [
-  "office",
-  "design",
-  "production"
-]
+import TaskSidebar from '../components/TaskSidebar'
+
+const workspaces = ["office", "design", "production"]
 
 const TasksPage = () => {
-  const location = useLocation()
-  const pathname = location.pathname
+
+
   return (
-    <WrapperContainer>
-      <div className="text-white flex flex-col md:flex-row gap-6 min-h-screen md:gap-14">
-        <div className="space-y-3 bg-linear-to-r from-blue-600 to-blue-400 rounded p-4 md:p-8 md:min-w-md">
-          <h2 className="text-2xl font-bold">Workspace</h2>
-          <div className="flex flex-col gap-2 text-left">
-            {
-              workspaces.map((workspace) => (
-                <Link
-                  to={workspace}
-                  className={`
-              transition-all hover:-translate-x-2 duration-150 
-              ${pathname.includes(workspace)
-                      ? "text-gray-100 font-bold border-b"   // Active link styles
-                      : "hover:text-yellow-400 text-gray-300"
-                    } `}
-                >
-                  {capitalize(workspace)}
-                </Link>
-              ))
-            }
-          </div>
-        </div>
+    <div className="flex flex-col md:flex-row md:h-[calc(100vh-80px)] bg-linear-to-br from-gray-800 to-gray-900 text-gray-900">
+      {/* Sidebar */}
+     <TaskSidebar/>
+
+      {/* Main content — scrollable */}
+      <div className="flex-1 overflow-y-auto bg-white">
         <Outlet />
       </div>
-
-
-    </WrapperContainer>
+    </div>
   )
 }
 
