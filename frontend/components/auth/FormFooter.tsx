@@ -8,7 +8,7 @@ interface FormFooterProps{
 const FormFooter = ({isLogin}:FormFooterProps) => {
     return (
         <>
-            <div className="flex gap-4 justify-between items-center separator-card ">
+            <div className="flex gap-4 justify-between items-center separator-card text-gray-100 ">
                 <div className="w-full h-0.5 bg-gray-100"></div>
                 <h2>OR</h2>
                 <div className="w-full h-0.5 bg-gray-100"></div>

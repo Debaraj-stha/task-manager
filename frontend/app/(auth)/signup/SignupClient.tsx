@@ -2,7 +2,7 @@
 'use client'
 import FormFooter from '@/components/auth/FormFooter'
 import FormWrapper from '@/components/auth/FormWrapper'
-import SignupForm from '@/components/auth/SignupForm'
+import SignupForm from '@/app/(auth)/signup/SignupForm'
 import WrapperContainer from '@/components/layout/WrapperContainer'
 import { SIGNUPBLOB } from '@/constants/images'
 import { useRef } from 'react'

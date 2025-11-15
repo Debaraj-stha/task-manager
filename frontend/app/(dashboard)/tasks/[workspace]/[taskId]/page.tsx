@@ -1,7 +1,8 @@
 'use client'
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent,  } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, } from "@/components/ui/card";
 import { tasks } from "@/constants/content/tasks/tasks";
 import { getSubtasks } from "@/services/taskServices";
 import { Member } from "@/types/members";
@@ -40,12 +41,9 @@ const TaskPage = () => {
             >
               <div className="flex justify-between items-center mb-2">
                 <h4 className="font-medium text-blue-700">{st.name}</h4>
-                <span className={`px-2 py-1 text-xs rounded transition 
-                ${st.status === "done" ? "bg-green-100 text-green-800" :
-                    st.status === "in-progress" ? "bg-yellow-100 text-yellow-800" :
-                      "bg-gray-100 text-gray-600"}`}>
-                  {capitalize(st.status)}
-                </span>
+                <Badge className={`${st.status === "done" ? "bg-green-100 text-green-800" :
+                  st.status === "in-progress" ? "bg-yellow-100 text-yellow-800" :
+                    "bg-gray-100 text-gray-600"}`}>{capitalize(st.status)}</Badge>
               </div>
               <p className="text-gray-700 text-sm mb-2">{st.description}</p>
               {(st.members ?? []).length > 0 && (

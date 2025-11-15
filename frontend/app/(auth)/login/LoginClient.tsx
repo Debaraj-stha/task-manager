@@ -1,7 +1,7 @@
 'use client'
 import FormFooter from '@/components/auth/FormFooter';
 import FormWrapper from '@/components/auth/FormWrapper';
-import LoginForm from '@/components/auth/LoginForm';
+import LoginForm from '@/app/(auth)/login/LoginForm';
 import WrapperContainer from '@/components/layout/WrapperContainer';
 import { LOGINBLOB } from '@/constants/images';
 import  { useRef } from 'react'
