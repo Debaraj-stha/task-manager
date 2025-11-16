@@ -1,4 +1,4 @@
-export const APP_NAME = "Task Manager"
+export const APP_NAME = "TaskFlow"
 
 export const FEATURES = [
   {

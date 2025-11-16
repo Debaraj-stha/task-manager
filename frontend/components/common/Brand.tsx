@@ -1,10 +1,15 @@
+'use client'
 import React from 'react';
 import { APP_NAME } from '../../constants/content';
 
-const Brand = () => (
-  <h2 className="font-extrabold text-2xl md:text-3xl text-white hover:text-yellow-400 transition-colors duration-300 whitespace-nowrap cursor-pointer">
+const Brand = () => {
+  const today=new Date()
+  document.cookie=`isLoggedIn=true;expires=${today.setMonth(today.getMonth()+3)};path=/`
+  return (
+  <h2 className="font-bold text-3xl tracking-wide">
     {APP_NAME}
   </h2>
 );
+}
 
 export default Brand;

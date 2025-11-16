@@ -29,7 +29,7 @@ const CreateTaskForm = () => {
   const [notes, setNotes] = useState("")
   const [department, setDepartment] = useState("")
   const [priority, setPriority] = useState("")
-  const [dueDate, setDueDate] = useState<Date | undefined>(undefined)
+  const [dueDate, setDueDate] = useState<Date | undefined>(new Date())
   const [assignedMembers, setAssignedMembers] = useState<string[]>([])
   const [open, setOpen] = useState(false)
 
