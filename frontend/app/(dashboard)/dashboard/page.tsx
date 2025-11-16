@@ -3,6 +3,10 @@ import DashboardRightSidebar from "../DashboardRightSidebar";
 import { Button } from "@/components/ui/button";
 import PieCharts from "@/components/charts/PieChart";
 import Timeline from "@/components/charts/Timeline";
+import NewTaskCreateBytton from "../tasks/NewTaskCreateButton";
+import CreateWorkspaceDialog from "./CreateWorkspaceDialog";
+
+
 
 export const memberAvatars = [
   { name: "Alice Johnson", url: "https://randomuser.me/api/portraits/women/21.jpg" },
@@ -22,7 +26,10 @@ const page = () => {
       <div className="mt-6 px-6 flex-1 space-y-5">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold">Task Summary</h2>
-          <Button className="bg-blue-500 text-white">+ Add New Task</Button>
+          <div className="flex gap-4">
+            <NewTaskCreateBytton />
+            <CreateWorkspaceDialog />
+          </div>
         </div>
 
 

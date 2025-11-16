@@ -1,12 +1,13 @@
 import SectionHeader from '@/components/common/SectinHeader'
 import AvatarGroup from '@/components/dashboard/AvatarGroup'
 import IconWithText from '@/components/dashboard/IconWithText'
-import FlexBox from '@/components/layout/FlexBox'
+
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Item, ItemActions } from '@/components/ui/item'
 
-import { Calendar, Calendar1Icon, CheckCircle, ChevronDown, Circle, MoreHorizontal, UsersRound } from 'lucide-react'
+import { Calendar, Calendar1Icon, CheckCircle, Circle, MoreHorizontal, UsersRound } from 'lucide-react'
 
 import { HiOutlineStatusOnline } from 'react-icons/hi'
 
@@ -26,7 +27,7 @@ export const memberAvatars = [
 const DashboardRightSidebar = () => {
     return (
         <div className='w-80 py-6  bg-gray-100 border-l border-gray-200 shadow-2xl space-y-5 h-screen'>
-           
+
             <div className='px-6 py-3 text-gray-800 space-y-5 border-b border-gray-300'>
                 <div className={`flex items-center justify-between gap-2 `}>
                     <SectionHeader text='Project Overview' />
@@ -39,48 +40,48 @@ const DashboardRightSidebar = () => {
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque rerum alias, ab adipisci doloribus enim, dolor iusto,
                     fugiat ...
                     .</p>
-                <FlexBox>
+                <Item className='flex justify-between my-0'>
                     <IconWithText text='Status' icon={HiOutlineStatusOnline} />
                     <Badge className='py-2'>In progress</Badge>
-                </FlexBox>
-                <FlexBox>
+                </Item>
+                <Item className='flex justify-between my-0'>
                     <IconWithText text='Timeline' icon={Calendar1Icon} />
                     <span>2026/05/12</span>
-                </FlexBox>
-                <FlexBox>
+                </Item>
+                <Item className='flex justify-between my-0'>
                     <IconWithText text='Assignee' icon={UsersRound} />
                     <AvatarGroup
                         imageURLs={memberAvatars.map((images) => images["url"])}
                         names={memberAvatars.map((images) => images["name"])}
                     />
-                </FlexBox>
-                <FlexBox>
+                </Item>
+                <Item className='flex justify-between my-0'>
                     <IconWithText text='Label' icon={Calendar} />
-                    <Button variant={"outline"} className='cursor-pointer hover:text-cyan-600'>+ Add Label</Button>
-                </FlexBox>
+                    <ItemActions  className='cursor-pointer hover:text-cyan-600'>+ Add Label</ItemActions>
+                </Item>
             </div>
             <div className='px-6 py-3 text-gray-800 space-y-5'>
                 <SectionHeader text='Today Tasks' />
-                <FlexBox extraClass='justify-start gap-3'>
+                <Item className='my-0'>
                     <CheckCircle className='text-green-600' />
                     <span className='text-green-600 line-through'>Lorem ipsum dolor sit amet </span>
-                </FlexBox>
-                <FlexBox extraClass='justify-start gap-3'>
+                </Item>
+                <Item className='my-0' >
                     <CheckCircle className='text-green-600' />
                     <span className='text-green-600 line-through'>Lorem ipsum dolor sit amet </span>
-                </FlexBox>
-                <FlexBox extraClass='justify-start gap-3'>
+                </Item>
+                <Item className='my-0'>
                     <CheckCircle className='text-green-600' />
                     <span className='text-green-600 line-through'>Lorem ipsum dolor sit amet </span>
-                </FlexBox>
-                <FlexBox extraClass='justify-start gap-3'>
+                </Item>
+                <Item className='my-0' >
                     <Circle className='' />
                     <span className=' line-through'>Lorem ipsum dolor sit amet </span>
-                </FlexBox>
-                                <FlexBox extraClass='justify-start gap-3'>
+                </Item>
+                <Item className='my-0'>
                     <Circle className='' />
                     <span className=' line-through'>Lorem ipsum dolor sit amet </span>
-                </FlexBox>
+                </Item>
             </div>
 
         </div>

@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Plus, Mail, Trash } from "lucide-react"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 const projects = [
     {
@@ -47,17 +48,20 @@ export default function TeamMembersPage() {
                     <Plus className="w-4 h-4" /> Add Member
                 </Button>
             </div>
+        {/* project */}
+           <Select value={selectedProjectName} onValueChange={setProjectName}>
+  <SelectTrigger>
+    <SelectValue placeholder="Select project" />
+  </SelectTrigger>
+  <SelectContent>
+    {projects.map((project) => (
+      <SelectItem key={project.id} value={project.name}>
+        {project.name}
+      </SelectItem>
+    ))}
+  </SelectContent>
+</Select>
 
-            {/* Project Toggle */}
-            <ToggleGroup
-                type="single"
-                value={selectedProjectName}
-                onValueChange={(value: string) => value && setProjectName(value)}
-            >
-                {
-                    projects.map((project) => <ToggleGroupItem key={project.id} value={project.name}>{project.name}</ToggleGroupItem>)
-                }
-            </ToggleGroup>
 
             {/* Team Members Grid */}
             <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mt-4">

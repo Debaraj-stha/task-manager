@@ -1,9 +1,8 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Item, ItemActions, ItemDescription, ItemMedia, ItemTitle } from "@/components/ui/item";
 import { Bell, ChevronDown } from "lucide-react";
-import React from "react";
 
 const DashboardTopBar = () => {
   return (
@@ -17,25 +16,27 @@ const DashboardTopBar = () => {
       </div>
 
       {/* Right Icons */}
-      
+
       <div className='rounded shadow-sm flex items-center '>
         <div className="flex items-center gap-4">
-        <Bell className="w-6 h-6 text-gray-600 cursor-pointer" />
-      </div>
-        <div className='px-6 flex gap-2 flex-row items-center '>
-          <Avatar>
-            <AvatarImage src={"https://randomuser.me/api/portraits/men/35.jpg"} height={40} width={40} alt='User profile' />
-            <AvatarFallback>User</AvatarFallback>
-          </Avatar>
-          <div className='flex flex-row'>
-            <div>
-              <h3 className='m-0 text-sm font-medium'>Jhon Doe</h3>
-              <small className='text-xs'>Backend Developer</small>
-            </div>
-            <Button variant={"ghost"} className='cursor-pointer'><ChevronDown /></Button>
-          </div>
-
+          <Bell className="w-6 h-6 text-gray-600 cursor-pointer" />
         </div>
+ 
+        <Item>
+          <ItemMedia>
+            <Avatar>
+              <AvatarImage src={"https://randomuser.me/api/portraits/men/35.jpg"} height={40} width={40} alt='User profile' />
+              <AvatarFallback>User</AvatarFallback>
+            </Avatar>
+          </ItemMedia>
+          
+            <ItemTitle>
+              Jhon Doe
+            </ItemTitle>
+            <ItemDescription>Backend dveloper</ItemDescription>
+ 
+          <ItemActions><ChevronDown /></ItemActions>
+        </Item>
       </div>
     </div>
   );

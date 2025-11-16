@@ -1,56 +1,84 @@
 "use client";
 
-import { tasks } from '@/constants/content/tasks/tasks';
-import { capitalize } from '@/utils/helper';
-import { useParams, useRouter } from 'next/navigation';
+import { useState, useMemo } from "react";
+import { tasks } from "@/constants/content/tasks/tasks";
+import { useParams, useRouter } from "next/navigation";
+import TaskItem from "./TaskItem";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import TaskFilteringTools from "./TaskFilteringTools";
 
-import TaskItem from './TaskItem';
-import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
 
 const Page = () => {
   const router = useRouter();
   const { workspace } = useParams<{ workspace?: string }>();
-
-  const workspaceTasks = workspace
-    ? tasks.filter(
-      (t) => t.workspace?.toLowerCase() === workspace.toLowerCase()
-    )
-    : tasks;
+  const [selectedWorkspace, setSelectedWorkspace] = useState<string | undefined>(workspace);
+  const [sortBy, setSortBy] = useState<string>("");
 
   const handleNewTask = () => {
-    if (workspace) {
-      router.push(`/tasks/${workspace}/new`);
-    } else {
-      router.push(`/tasks/new`);
-    }
+    router.push(selectedWorkspace ? `/tasks/${selectedWorkspace}/new` : `/tasks/new`);
   };
 
-  return (
-    <div className="flex-1 h-full overflow-y-auto bg-gray-50">
-      {/* Sticky header */}
-      <div className="sticky top-0 z-10 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-        <h2 className="font-semibold text-3xl text-blue-700">
-          {workspace ? `${capitalize(workspace)} Tasks` : "All Tasks"}
-        </h2>
+  const priorityOrder: Record<string, number> = { low: 1, medium: 2, high: 3 };
 
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={handleNewTask}>
+  const filteredTasks = useMemo(() => {
+    let filtered = tasks;
+    if (selectedWorkspace) {
+      filtered = filtered.filter(
+        (t) => t.workspace?.toLowerCase() === selectedWorkspace.toLowerCase()
+      );
+    }
+
+    switch (sortBy) {
+      case "deadline_asc":
+        return filtered.sort((a, b) => (a.deadline?.getTime() || 0) - (b.deadline?.getTime() || 0));
+      case "deadline_desc":
+        return filtered.sort((a, b) => (b.deadline?.getTime() || 0) - (a.deadline?.getTime() || 0));
+      case "priority_asc":
+        return filtered.sort(
+          (a, b) =>
+            (priorityOrder[a.priority?.toLowerCase() || "low"] || 0) -
+            (priorityOrder[b.priority?.toLowerCase() || "low"] || 0)
+        );
+      case "priority_desc":
+        return filtered.sort(
+          (a, b) =>
+            (priorityOrder[b.priority?.toLowerCase() || "low"] || 0) -
+            (priorityOrder[a.priority?.toLowerCase() || "low"] || 0)
+        );
+      default:
+        return filtered;
+    }
+  }, [tasks, selectedWorkspace, sortBy]);
+
+  return (
+    <div className="flex flex-col h-screen bg-gray-50">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-10 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200 px-6 py-4 flex items-center gap-4 justify-between">
+        <TaskFilteringTools
+          selectedWorkspace={selectedWorkspace}
+          setSelectedWorkspace={setSelectedWorkspace}
+        />
+        <Button
+          className="bg-blue-600 hover:bg-blue-700 text-white"
+          onClick={handleNewTask}
+        >
           <Plus className="mr-2 h-4 w-4" /> New Task
         </Button>
-
-
       </div>
 
-      {/* Task List */}
-      <div className="p-6 space-y-4">
-        {workspaceTasks.length > 0 ? (
-          workspaceTasks.map((t) => <TaskItem key={t.id} task={t} />)
-        ) : (
-          <p className="text-gray-500 italic">
-            No tasks found for this workspace.
-          </p>
-        )}
-      </div>
+      {/* Scrollable Task List */}
+
+        <div className="p-6 min-h-full">
+          <div className="space-y-4">
+            {filteredTasks.length > 0 ? (
+              filteredTasks.map((t) => <TaskItem key={t.id} task={t} />)
+            ) : (
+              <p className="text-gray-500 italic">No tasks found.</p>
+            )}
+          </div>
+        </div>
+
     </div>
   );
 };

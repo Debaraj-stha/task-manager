@@ -52,7 +52,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
     return (
         <div
             onClick={() => router.push(`${workspace}/${task.id}`)}
-            className="p-5 bg-gray-50 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:bg-blue-50 transition-all duration-200 space-y-3 cursor-pointer"
+            className=" p-5 bg-gray-50 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:bg-blue-50 transition-all duration-200 space-y-3 cursor-pointer"
         >
             {/* Task Header */}
             <div>
