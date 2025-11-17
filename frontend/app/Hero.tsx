@@ -1,106 +1,88 @@
 'use client'
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { APP_NAME } from "../constants/content";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Button } from "@/components/ui/button";
+import { HEROBG } from "@/constants/images";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const bubbleContainerRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const [modalOpen, setOpen] = useState(false);
+  const blobRefs = useRef<HTMLDivElement[]>([]);
 
-  const colors = ["#FDE68A", "#FBBF24", "#F87171", "#60A5FA"];
-
-  const createBubbles = () => {
-    if (!bubbleContainerRef.current || !buttonRef.current) return;
-
-    for (let i = 0; i < 10; i++) {
-      const bubble = document.createElement("div");
-      bubble.classList.add("absolute", "rounded-full", "pointer-events-none");
-
-      const size = Math.random() * 6 + 4;
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      bubble.style.left = "50%";
-      bubble.style.top = "50%";
-
-      bubbleContainerRef.current.appendChild(bubble);
-
-      const x = (Math.random() - 0.5) * 120;
-      const y = -80 - Math.random() * 60;
-
-      gsap.fromTo(
-        bubble,
-        { x: 0, y: 0, opacity: 1, scale: 1 },
-        {
-          x,
-          y,
-          opacity: 0,
-          scale: Math.random() * 0.6 + 0.4,
-          duration: 1.5,
-          ease: "power1.out",
-          onComplete: () => bubble.remove(),
-        }
-      );
-    }
-  };
 
   useGSAP(() => {
     if (!containerRef.current) return;
-    const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.7 } });
 
-    tl.from(containerRef.current.querySelectorAll(".fade-up"), {
+    gsap.from(containerRef.current.querySelectorAll(".fade-up"), {
       opacity: 0,
       y: 40,
       stagger: 0.15,
+      duration: 0.9,
+      ease: "power2.out",
+    });
+
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top center+=100",
+      onEnter: () =>
+        gsap.to(".hero-description", {
+          color: "#E2E8F0",
+          duration: 0.6,
+          ease: "power1.out",
+        }),
     });
   }, []);
 
-  return (
-    <section className="relative min-h-[90vh] flex items-center justify-center px-6 
-      bg-linear-to-br from-gray-900 via-blue-900 to-gray-800 text-white overflow-hidden"
-    >
-      {/* Glass overlay */}
-      <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
+  
 
-      {/* Main content */}
+  return (
+    <section
+      className="relative min-h-screen flex items-center justify-center px-6 text-white 
+      overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url("${HEROBG.src}")` }}
+    >
+      {/* Subtle dark overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+
+   
+ 
+
+      {/* Main Content */}
       <div
         ref={containerRef}
-        className="relative max-w-3xl text-center space-y-6 z-10"
+        className="relative z-10 max-w-3xl text-center space-y-7"
       >
-        <h1 className="fade-up text-4xl sm:text-5xl md:text-6xl font-black leading-tight">
-          Organize better with{" "}
-          <span className="bg-linear-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-            {APP_NAME}
+        <h1 className="fade-up text-4xl sm:text-5xl md:text-6xl font-extrabold leading-snug">
+          Work Smarter.<br />
+          <span className="bg-linear-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
+            Organize Life with {APP_NAME}
           </span>
         </h1>
 
-        <p className="fade-up text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
-          Smart task tracking, team collaboration, and a seamless experience —
-          all in one workspace.
+        <p className="fade-up hero-description text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
+          A powerful workspace designed for focus. Plan tasks, collaborate
+          effortlessly, and stay on top of what truly matters.
         </p>
 
-        <div className="fade-up mt-8 relative inline-block">
-          <div ref={bubbleContainerRef} className="absolute inset-0" />
+        <div className="fade-up mt-10">
           <Button
-          variant={"secondary"}
-            ref={buttonRef}
-            onClick={() => setOpen(true)}
-            onMouseEnter={createBubbles}
-            className=" relative"
+            size="lg"
+            className="px-8 py-6 text-lg font-semibold backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all shadow-lg"
           >
-            Get Started ✨
+            🚀 Start for Free
           </Button>
         </div>
-      </div>
 
-      {/* Decorative floating gradient blobs */}
-      <div className="absolute top-10 left-10 w-56 h-56 bg-blue-500/30 blur-3xl rounded-full animate-pulse opacity-50" />
-      <div className="absolute bottom-10 right-10 w-72 h-72 bg-cyan-500/20 blur-3xl rounded-full opacity-60" />
+        {/* Scroll Indicator */}
+        <div className="fade-up mt-16 animate-bounce text-sm text-gray-300 opacity-75 tracking-wide">
+          Scroll to explore ↓
+        </div>
+      </div>
     </section>
   );
 };

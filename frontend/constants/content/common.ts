@@ -61,7 +61,7 @@ export const NAV_LINKS = [
   { label: "About", routeKey: "ABOUT", role: ["guest"] },
   { label: "Contact", routeKey: "CONTACT", role: ["guest"] },
   { label: "Login", routeKey: "LOGIN", role: ["guest"] },
-  { label: "Signup", routeKey: "SIGNUP", role: ["guest"] },
+  // { label: "Signup", routeKey: "SIGNUP", role: ["guest"] },
 
   // User links
   { label: "Dashboard", routeKey: "DASHBOARD", role: ["user"] },
@@ -82,8 +82,10 @@ export const NAV_LINKS = [
 
 export const QUICK_LINKS = [
   ...NAV_LINKS,
-  { label: "Terms", routeKey: "TERMS" },
-  { label: "Privacy", routeKey: "PRIVACY" },
-  { label: "Help / FAQ", routeKey: "HELP" },
-  { label: "Contact", routeKey: "CONTACT" },
+  { label: "Terms", routeKey: "TERMS",role:["user",'guest'] },
+  { label: "Privacy", routeKey: "PRIVACY",role:["user",'guest'] },
+  { label: "Help / FAQ", routeKey: "HELP",role:["user",'guest'] },
+  { label: "Contact", routeKey: "CONTACT",role:["user",'guest'] },
 ];
+
+

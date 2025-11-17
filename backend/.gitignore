@@ -5,3 +5,4 @@ node_modules
 /generated/prisma
 #service key from firebase
 serviceAccountKey.json
+/generated/prisma

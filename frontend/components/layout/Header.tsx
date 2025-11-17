@@ -10,17 +10,17 @@ import { MenuIcon } from "lucide-react";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const role = "user"; // Later dynamic
+  const role = "guest"; // Later dynamic
   const filteredLinks = NAV_LINKS.filter((l) => l.role.includes(role));
 
   return (
-    <header className="sticky top-0 z-50 bg-gray-900/90 backdrop-blur-md shadow-md">
+    <header className="sticky top-0 z-50 bg-gray-200  shadow-md">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Brand / Logo */}
         <Brand />
 
         {/* Desktop Links */}
-        <nav className="hidden md:flex gap-8 font-medium text-white">
+        <nav className="hidden md:flex gap-8 font-medium text-gray-900">
           {filteredLinks.map((link, i) => {
             const isActive = pathname === ROUTES[link.routeKey];
             return (
@@ -28,7 +28,7 @@ const Navbar = () => {
                 key={i}
                 href={ROUTES[link.routeKey]}
                 className={`transition duration-300 ${
-                  isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
+                  isActive ? "text-blue-400 font-semibold" : "hover:text-blue-500"
                 }`}
               >
                 {link.label}

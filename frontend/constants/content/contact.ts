@@ -5,6 +5,7 @@ export const SOCIAL_LINKS = {
   linkedin: "https://linkedin.com/in/yourprofile",
   github: "https://github.com/yourusername",
   youtube: "https://youtube.com/@yourchannel",
+  TWITTER:""
 };
 
 export const PHONE="+977980000000"

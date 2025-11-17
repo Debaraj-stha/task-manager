@@ -1,27 +1,16 @@
-import dotenv from "dotenv"
-dotenv.config()
-import { PrismaClient } from "@prisma/client"
+import { UserService } from "./services/user.service.js"
+import { WorkService } from "./services/workspace.service.js"
 
-const prisma = new PrismaClient()
-
-
-async function main() {
-  const newUser = await prisma.user.create({
-    data: {
-      name: 'Alice',
-      email: 'alice@example.com',
-    },
-  });
-  console.log(newUser);
+const workspace = {
+  name: "office",
+  createdBy: 1
 }
 
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
+const create = async () => {
+  await WorkService.createWorkspace(workspace)
+}
 
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+
+// create()
+const user = await UserService.getUser(1)
+WorkService.getAllWorkspaceCreatedByUser(user).then((res) => console.log(res)).catch((e) => console.log(e))

@@ -1,12 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -14,8 +10,100 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
-  name String
-  email String @unique
+model User {
+  id          Int            @id @default(autoincrement())
+  name        String         @db.VarChar(100)
+  email       String         @unique @db.VarChar(255)
+  password    String         @db.VarChar(255)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  position    String?
+
+  workspaces  Workspace[]
+  taskMembers TaskMemberMap[]
+  tasksCreated Task[]       @relation("UserCreatedTasks")
+  taskUpdates TaskUpdate[]
+}
+
+model Workspace {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  createdBy Int
+  user      User @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+
+  tasks     Task[]
+}
+
+enum Taskstatus {
+  IN_PROGRESS
+  PENDING
+  COMPLETED
+  REVIEW
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum TaskType {
+  FEATURE
+  BUG
+  IMPROVEMENT
+}
+
+model Task {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String
+  note        String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  startDate   DateTime?
+  deadline    DateTime?
+  status      Taskstatus   @default(PENDING)
+  priority    TaskPriority @default(MEDIUM)
+  type        TaskType     @default(FEATURE)
+  progress    Int          @default(0) // % complete
+  isArchived  Boolean      @default(false)
+
+  // Relations
+  workspaceId Int
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  createdBy   Int
+  creator     User @relation("UserCreatedTasks", fields: [createdBy], references: [id], onDelete: Cascade)
+
+  members     TaskMemberMap[]
+  updates     TaskUpdate[]
+}
+
+model TaskMemberMap {
+  id         Int @id @default(autoincrement())
+  taskId     Int
+  userId     Int
+
+  task       Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user       User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  assignedAt DateTime @default(now())
+  role       String?
+}
+
+model TaskUpdate {
+  id          Int      @id @default(autoincrement())
+  taskId      Int
+  updatedBy   Int
+  field       String   // What was updated? example: "status"
+  oldValue    String?
+  newValue    String?
+  updatedAt   DateTime @default(now())
+
+  task        Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user        User @relation(fields: [updatedBy], references: [id], onDelete: Cascade)
 }

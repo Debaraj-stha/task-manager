@@ -9,6 +9,7 @@ import LOGINFORMSVG from "../assets/svg/login_form.svg"
 import GOOGLEICON from "../assets/svg/google_logo.svg"
 import FACEBOOKICON from "../assets/svg/facebook.svg"
 import SIGNUPBLOB from "../assets/svg/signup-blob.svg"
+import HEROBG from "../assets/svg/side_blob_6.svg"
 export { abstract,
      ABOUTIMAGE, 
     ABOUTSVG,
@@ -20,4 +21,5 @@ export { abstract,
     GOOGLEICON,
     SIGNUPBLOB,
     FACEBOOKICON ,
+    HEROBG
 }
