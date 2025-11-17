@@ -20,7 +20,7 @@ const formSchema = z
     email: z.email("Invalid email"),
     password: z.string().min(6, "Min 6 characters"),
     confirmPassword: z.string().min(6, "Min 6 characters"),
-    workspace: z.string().optional(),
+    organization: z.string().optional(),
     terms: z.boolean().refine((val) => val === true, {
       message: "You must agree to terms",
     }),
@@ -40,7 +40,7 @@ const SignupForm = () => {
       email: "",
       password: "",
       confirmPassword: "",
-      workspace: "",
+      organization: "",
       terms: false,
     },
   });
@@ -53,9 +53,13 @@ const SignupForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 w-full max-w-2xl mx-auto"
+        className="space-y-8 w-full max-w-2xl mx-auto  rounded-2xl shadow-lg"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left text-gray-200">
+        <h2 className="text-2xl font-semibold text-white text-center"  style={{ fontFamily: "var(--font-inter)" }}>
+          Create Your Account
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left text-gray-200">
           {/* Name */}
           <FormField
             control={form.control}
@@ -66,11 +70,11 @@ const SignupForm = () => {
                 <FormControl>
                   <Input
                     placeholder="Your Name"
-                    className="bg-gray-800 text-white"
+                    className="bg-gray-800 text-white border-gray-700 placeholder-gray-400 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-400 mt-1" />
               </FormItem>
             )}
           />
@@ -86,11 +90,11 @@ const SignupForm = () => {
                   <Input
                     type="email"
                     placeholder="you@example.com"
-                    className="bg-gray-800 text-white"
+                    className="bg-gray-800 text-white border-gray-700 placeholder-gray-400 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-400 mt-1" />
               </FormItem>
             )}
           />
@@ -106,11 +110,11 @@ const SignupForm = () => {
                   <Input
                     type="password"
                     placeholder="Enter password"
-                    className="bg-gray-800 text-white"
+                    className="bg-gray-800 text-white border-gray-700 placeholder-gray-400 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-400 mt-1" />
               </FormItem>
             )}
           />
@@ -126,30 +130,30 @@ const SignupForm = () => {
                   <Input
                     type="password"
                     placeholder="Re-enter password"
-                    className="bg-gray-800 text-white"
+                    className="bg-gray-800 text-white border-gray-700 placeholder-gray-400 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-400 mt-1" />
               </FormItem>
             )}
           />
 
-          {/* Workspace */}
+          {/* Organization */}
           <FormField
             control={form.control}
-            name="workspace"
+            name="organization"
             render={({ field }) => (
               <FormItem className="md:col-span-2">
-                <FormLabel>Workspace Name (optional)</FormLabel>
+                <FormLabel>Organization Name (optional)</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Workspace Name"
-                    className="bg-gray-800 text-white"
+                    placeholder="Organization Name"
+                    className="bg-gray-800 text-white border-gray-700 placeholder-gray-400 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-400 mt-1" />
               </FormItem>
             )}
           />
@@ -160,23 +164,23 @@ const SignupForm = () => {
           control={form.control}
           name="terms"
           render={({ field }) => (
-            <FormItem className="flex items-center space-x-2">
+            <FormItem className="flex items-center space-x-3">
               <input
                 type="checkbox"
                 checked={field.value}
                 onChange={field.onChange}
-                className="accent-blue-500"
+                className="w-5 h-5 accent-blue-500 rounded"
               />
-              <FormLabel className="text-sm text-white/80">
+              <FormLabel className="text-sm text-gray-300">
                 I agree to Terms & Privacy Policy
               </FormLabel>
-              <FormMessage />
+              <FormMessage className="text-red-400 mt-1" />
             </FormItem>
           )}
         />
 
         {/* Submit */}
-        <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600">
+        <Button className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md transition-all duration-200">
           Create Account
         </Button>
       </form>

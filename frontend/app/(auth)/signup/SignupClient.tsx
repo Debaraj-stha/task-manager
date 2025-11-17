@@ -1,11 +1,11 @@
-// app/signup/SignupClient.tsx (Client component)
 'use client'
+
 import FormFooter from '@/components/auth/FormFooter'
-import FormWrapper from '@/components/auth/FormWrapper'
 import SignupForm from '@/app/(auth)/signup/SignupForm'
 import WrapperContainer from '@/components/layout/WrapperContainer'
 import { SIGNUPBLOB } from '@/constants/images'
 import { useRef } from 'react'
+
 
 export default function SignupClient() {
   const ref = useRef<HTMLDivElement>(null)
@@ -15,13 +15,21 @@ export default function SignupClient() {
       <div
         ref={ref}
         style={{ backgroundImage: `url("${SIGNUPBLOB.src}")` }}
-        className="bg-fixed bg-cover bg-center min-h-screen flex items-center justify-center px-4 space-y-4"
+        className="relative bg-fixed bg-cover bg-center min-h-screen flex items-center justify-center px-4"
       >
-        <FormWrapper isLoginForm={false}>
-          <p className="text-gray-200 mb-4 text-center">Signup to continue</p>
-          <SignupForm />
-          <FormFooter />
-        </FormWrapper>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        <div
+       
+          className="relative w-full max-w-md md:max-w-2xl my-16 md:my-0"
+        >
+          <div className='bg-gray-900 rounded-2xl px-8 py-12'>
+          
+            <SignupForm />
+            <FormFooter />
+          </div>
+        </div>
       </div>
     </WrapperContainer>
   )
