@@ -4,7 +4,7 @@ export const UserController = {
   createUser: async (req, res) => {
     try {
       const user = await UserService.createUser(req.body);
-      res.status(201).json(user);
+      res.status(201).json({user,message:"User created successfully"});
     } catch (err) {
       res.status(400).json({ error: err.message });
     }

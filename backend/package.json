@@ -7,8 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.ts",
-"start": "npx prisma generate && nodemon index.js"
-
+    "start": "npx prisma generate && nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -26,12 +25,14 @@
   },
   "homepage": "https://github.com/Debaraj-stha/task-manager#readme",
   "dependencies": {
+    "@apollo/server": "^5.1.0",
     "@prisma/client": "^6.19.0",
     "@prisma/extension-accelerate": "^2.0.2",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
     "firebase-admin": "^13.5.0",
+    "graphql": "^16.12.0",
     "pg": "^8.16.3",
     "prisma": "^6.19.0",
     "socket.io": "^4.8.1"

@@ -7,32 +7,42 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import loginSchema from "@/schema/loginSchema";
+import AuthService from "@/services/authServices";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-const formSchema = z.object({
-  email: z.email("Invalid email address"),
-  password: z.string().min(1, "Password is required"),
-});
 
-type FormValues = z.infer<typeof formSchema>;
+
+type FormValues = z.infer<typeof loginSchema>;
 
 const LoginForm: React.FC = () => {
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
+  const router = useRouter()
+
 
   const onSubmit = async (data: FormValues) => {
-    console.log("Login Data:", data);
-    await new Promise((r) => setTimeout(r, 2000));
-  };
+    const { data: res } = await AuthService.login(data.email, data.password)
+    const { message, error, user, token } = res.Login
+    console.log(token)
+    toast.success(message)
 
+    document.cookie = `token=${token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // Redirect to dashboard
+    router.push("/dashboard");
+  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full max-w-md mx-auto text-left">
-        
+
         {/* Email */}
         <FormField
           control={form.control}

@@ -10,6 +10,7 @@ export const UserService = {
   getUserById: async (id) => {
     return await UserRepository.getUserById(id);
   },
+  getUserByEmailId:async(email)=>await UserRepository.getUserByEmail(email),
 
   // Get all users
   getAllUsers: async () => {

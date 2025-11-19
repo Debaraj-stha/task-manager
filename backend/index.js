@@ -1,16 +1,15 @@
-import { UserService } from "./services/user.service.js"
-import { WorkService } from "./services/workspace.service.js"
 
-const workspace = {
-  name: "office",
-  createdBy: 1
-}
+import {ApolloServer} from "@apollo/server"
+import {startStandaloneServer} from "@apollo/server/standalone"
+import typeDefs from "./typeDefs.js";
+import resolvers from "./resolvers.js";
 
-const create = async () => {
-  await WorkService.createWorkspace(workspace)
-}
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  csrfPrevention:false
+  
+});
 
-
-// create()
-const user = await UserService.getUser(1)
-WorkService.getAllWorkspaceCreatedByUser(user).then((res) => console.log(res)).catch((e) => console.log(e))
+const { url } = await startStandaloneServer(server);
+console.log(`🚀 Server ready at ${url}`);

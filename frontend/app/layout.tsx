@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import { cookies } from "next/headers";
 import Footer from "@/components/layout/Footer";
+import { useAppSelector } from "@/redux/store";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,11 +45,9 @@ export default async function RootLayout({
 }) {
   
   const cookieStore = cookies();
-  const token = (await cookieStore).get("isLoggedIn"); // your cookie name
+  const token = (await cookieStore).get("token"); // your cookie name
 
-  const isLoggedIn = !!token;
-
-  return (
+  const isLoggedIn = !!token;  return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${montserrat.variable} antialiased`}>
         
@@ -55,7 +55,9 @@ export default async function RootLayout({
         {!isLoggedIn && <Header />}
 
         {children}
+       <Toaster />
         <Footer/>
+        
         
       </body>
     </html>

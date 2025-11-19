@@ -5,13 +5,13 @@ import DashboardTopBar from './DashboardTopBar'
 
 const layout = ({ children }: { children: ReactNode }) => {
     return (
-        <div className='flex '>
+        <div className='flex flex-col md:flex-row'>
             <DashboardSidebar />
             <div className='flex-1'>
                 <DashboardTopBar />
                 {children}
             </div>
-          
+
         </div>
     )
 }

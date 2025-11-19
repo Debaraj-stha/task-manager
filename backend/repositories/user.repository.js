@@ -10,10 +10,11 @@ export const UserRepository = {
   getUserById: async (id) => {
     return await prisma.user.findUnique({ where: { id } });
   },
+  getUserByEmail: async (email) => await prisma.user.findUnique({ where: { email: email } }),
 
   // Get all users
   getAllUsers: async () => {
-    return await prisma.user.findMany({orderBy:{'createdAt':"desc"}});
+    return await prisma.user.findMany({ orderBy: { 'createdAt': "desc" } });
   },
 
   // Update a user by ID
@@ -30,7 +31,7 @@ export const UserRepository = {
   getUsersByTaskId: async (taskId) => {
     return await prisma.user.findMany({
       where: {
-        taskMembers:{some:{taskId}}
+        taskMembers: { some: { taskId } }
       },
       include: {
         taskMembers: {

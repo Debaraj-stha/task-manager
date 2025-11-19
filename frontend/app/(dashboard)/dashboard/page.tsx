@@ -29,9 +29,9 @@ const page = () => {
   return (
     <div className="flex flex-row gap-4 ">
       <div className="mt-6 px-6 flex-1 space-y-5">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row flex-wrap justify-between items-center">
           <h2 className="text-2xl font-semibold">Task Summary</h2>
-          <div className="flex gap-4">
+          <div className="hidden md:flex  gap-4">
             <NewTaskCreateBytton />
             <CreateWorkspaceDialog />
           </div>

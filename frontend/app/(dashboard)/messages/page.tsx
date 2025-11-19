@@ -1,11 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send } from "lucide-react";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/avatar";
 
 interface Message {
   id: number;
@@ -15,9 +19,9 @@ interface Message {
 }
 
 const dummyConversations = [
-  { id: 1, name: "Alice" },
-  { id: 2, name: "Bob" },
-  { id: 3, name: "Charlie" },
+  { id: 1, name: "Alice", avatar: "https://i.pravatar.cc/150?img=1" },
+  { id: 2, name: "Bob", avatar: "https://i.pravatar.cc/150?img=2" },
+  { id: 3, name: "Charlie", avatar: "https://i.pravatar.cc/150?img=3" },
 ];
 
 const dummyMessages: Message[] = [
@@ -27,9 +31,11 @@ const dummyMessages: Message[] = [
 ];
 
 const MessagesPage: React.FC = () => {
-  const [selectedConversation, setSelectedConversation] = useState<number | null>(1);
+  const [selectedConversation, setSelectedConversation] = useState<number>(1);
   const [messages, setMessages] = useState<Message[]>(dummyMessages);
   const [newMessage, setNewMessage] = useState<string>("");
+
+  const activeUser = dummyConversations.find((c) => c.id === selectedConversation);
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
@@ -44,72 +50,85 @@ const MessagesPage: React.FC = () => {
   };
 
   return (
-    <div className="flex h-full bg-gray-50">
+    <div className="flex w-full h-[calc(100vh-70px)] bg-white shadow rounded-lg overflow-hidden">
+
       {/* Sidebar */}
-      <Card className="w-72 h-full border-r border-gray-200">
-        <CardHeader>
-          <CardTitle>Conversations</CardTitle>
-        </CardHeader>
-        <CardContent className="p-0">
-          <ScrollArea className="h-[calc(100vh-80px)]">
-            <div className="flex flex-col">
-              {dummyConversations.map((conv) => (
-                <Button
-                  key={conv.id}
-                  variant={selectedConversation === conv.id ? "default" : "ghost"}
-                  className="justify-start rounded-none border-b border-gray-200"
-                  onClick={() => setSelectedConversation(conv.id)}
-                >
-                  {conv.name}
-                </Button>
-              ))}
+      <div className="hidden md:flex flex-col w-72 border-r border-gray-200 bg-gray-50">
+        <h3 className="p-4 font-semibold text-gray-700">Messages</h3>
+
+        <ScrollArea className="flex-1">
+          {dummyConversations.map((conv) => (
+            <div
+              key={conv.id}
+              onClick={() => setSelectedConversation(conv.id)}
+              className={`flex items-center gap-3 p-3 cursor-pointer border-b
+                hover:bg-blue-50 transition
+                ${selectedConversation === conv.id ? "bg-blue-100" : ""}
+              `}
+            >
+              <Avatar className="h-10 w-10">
+                <AvatarImage src={conv.avatar} alt={conv.name} />
+                <AvatarFallback>{conv.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <span className="font-medium text-gray-800">{conv.name}</span>
             </div>
-          </ScrollArea>
-        </CardContent>
-      </Card>
+          ))}
+        </ScrollArea>
+      </div>
 
-      {/* Chat area */}
+      {/* Chat Area */}
       <div className="flex-1 flex flex-col">
-        <Card className="flex-1 flex flex-col">
-          <CardHeader>
-            <CardTitle>
-              {dummyConversations.find((c) => c.id === selectedConversation)?.name || "Select a chat"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex-1 p-4 overflow-y-auto">
-            <ScrollArea className="h-full">
-              <div className="flex flex-col gap-2">
-                {messages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div
-                      className={`px-4 py-2 rounded-lg max-w-xs ${
-                        msg.sender === "You" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-800"
-                      }`}
-                    >
-                      <p>{msg.content}</p>
-                      <span className="text-xs text-gray-500">{msg.timestamp}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ScrollArea>
-          </CardContent>
+        
+        {/* Chat Header */}
+        <div className="flex items-center gap-3 p-4 border-b">
+          <Avatar className="h-10 w-10">
+            <AvatarImage src={activeUser?.avatar} />
+            <AvatarFallback>U</AvatarFallback>
+          </Avatar>
+          <span className="font-semibold text-gray-800">
+            {activeUser?.name}
+          </span>
+        </div>
 
-          {/* Input */}
-          <div className="flex gap-2 p-4 border-t border-gray-200">
-            <Input
-              placeholder="Type a message..."
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-            />
-            <Button onClick={handleSendMessage}>
-              <Send className="h-4 w-4" />
-            </Button>
+        {/* Chat messages */}
+        <ScrollArea className="flex-1 p-4">
+          <div className="flex flex-col gap-3">
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex ${
+                  msg.sender === "You" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`px-4 py-2 rounded-xl max-w-xs text-sm shadow ${
+                    msg.sender === "You"
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-200 text-gray-800"
+                  }`}
+                >
+                  <p>{msg.content}</p>
+                  <span className="text-[10px] opacity-60 block mt-1">
+                    {msg.timestamp}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
-        </Card>
+        </ScrollArea>
+
+        {/* Message Input */}
+        <div className="flex items-center gap-3 p-4 border-t">
+          <Input
+            placeholder="Type a message..."
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+          />
+          <Button onClick={handleSendMessage}>
+            <Send className="h-4 w-4" />
+          </Button>
+        </div>
+
       </div>
     </div>
   );
