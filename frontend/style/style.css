@@ -1,0 +1,4 @@
+/* global.css or tailwind.css */
+.no-scroll {
+  overflow: hidden;
+}

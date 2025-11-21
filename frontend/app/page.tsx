@@ -1,16 +1,14 @@
-import Hero from "./Hero";
-import Testimonials from "./Testimonials";
-import CTA from "@/components/common/CTA";
-import Features from "@/components/common/Features";
+import Container from "@/components/coontainer";
+import HeroSection from "@/components/hero-section";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className=" min-h-screen  bg-zinc-50 font-sans dark:bg-black">
-
-      <Hero />
-      <Features />
-      <Testimonials />
-      <CTA />
+    <div className="flex flex-col min-h-screen items-center justify-center  font-[var(--font-poppins)] ">
+      
+        <HeroSection/>
+      <div className="h-screen bg-red-600 w-full"></div>
     </div>
   );
 }
